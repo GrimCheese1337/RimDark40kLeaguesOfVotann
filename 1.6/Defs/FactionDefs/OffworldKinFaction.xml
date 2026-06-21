@@ -36,8 +36,8 @@
 
         <canGenerateQuestSites>false</canGenerateQuestSites>
 
-        <factionIconPath>UI/Xenotypes/BEWH_SpaceMarineXenoIcon</factionIconPath>
-        <settlementTexturePath>UI/Xenotypes/BEWH_SpaceMarineXenoIcon</settlementTexturePath>
+        <factionIconPath>UI/Xenotypes/BEWH_Kin_icon</factionIconPath>
+        <settlementTexturePath>UI/Xenotypes/BEWH_Kin_icon</settlementTexturePath>
 
     </FactionDef>
 

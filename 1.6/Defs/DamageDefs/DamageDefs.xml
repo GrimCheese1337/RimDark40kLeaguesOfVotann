@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Damage Votann Regular Bolt -->
+  <DamageDef ParentName="Bomb" Name="BEWH_VotannBoltRoundBase">
+    <defName>BEWH_Damage_IronRound</defName>
+    <label>bolt explosion</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} found themselves in direct disagreement with Kin ballistic doctrine.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>26</defaultDamage>
+    <defaultStoppingPower>0.7</defaultStoppingPower>
+    <defaultArmorPenetration>0.10</defaultArmorPenetration>
+    <buildingDamageFactorImpassable>4</buildingDamageFactorImpassable>
+    <buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+    <plantDamageFactor>4</plantDamageFactor>
+    <corpseDamageFactor>0.03</corpseDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellFleck>BlastDry</explosionCellFleck>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <isRanged>true</isRanged>
+    <makesAnimalsFlee>true</makesAnimalsFlee>
+    <soundExplosion>GunShotA</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+
+  <!-- Damage Votann Cryo Bolt -->
+  <DamageDef>
+    <defName>BEWH_Damage_Cryo</defName>
+    <label>cryostatic explosion</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} succumbed to cryogenic shock.</deathMessage>
+    <hediff>Gunshot</hediff>
+    <additionalHediffs>
+      <li>
+        <hediff>BEWH_Hediff_Cryo</hediff>
+        <severityPerDamageDealt>0.015</severityPerDamageDealt>
+        <inverseStatScaling>true</inverseStatScaling>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <defaultStoppingPower>0.5</defaultStoppingPower>
+    <defaultArmorPenetration>0.3</defaultArmorPenetration>
+    <buildingDamageFactorImpassable>3</buildingDamageFactorImpassable>
+    <buildingDamageFactorPassable>1</buildingDamageFactorPassable>
+    <plantDamageFactor>5</plantDamageFactor>
+    <explosionCellFleck>BlastDry</explosionCellFleck>
+    <armorCategory>Heat</armorCategory>
+    <minDamageToFragment>3</minDamageToFragment>
+    <makesAnimalsFlee>true</makesAnimalsFlee>
+    <explosionColorCenter>(0, 243, 254)</explosionColorCenter>
+    <explosionColorEdge>(0, 190, 255)</explosionColorEdge>
+    <!-- <soundExplosion>BEWH_SFX_PlasmaHit</soundExplosion> --> <!-- add suitable sfx -->
+    <expolosionPropagationSpeed>0.25</expolosionPropagationSpeed>
+    <hasForcefulImpact>true</hasForcefulImpact>
+    <corpseDamageFactor>0.1</corpseDamageFactor>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+    <!-- <combatLogRules>...</combatLogRules> -->
+  </DamageDef>
+
+  <HediffDef>
+    <defName>BEWH_Hediff_Cryo</defName>
+    <label>hypercooled</label>
+    <description>Extreme cryogenic exposure that slows biological and mechanical systems, crippling movement and drastically reducing the combat effectiveness.</description>
+
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>true</isBad>
+
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>270</disappearsAfterTicks> <!-- 4.5 sec -->
+        <showRemainingTime>false</showRemainingTime>
+      </li>
+      <li Class="HediffCompProperties_Effecter">
+        <stateEffecter>BEWH_CryoEffecter</stateEffecter>
+      </li>
+    </comps>
+
+    <stages>
+      <li>
+        <label>Chill</label>
+        <minSeverity>0.0</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+        <statFactors>
+          <AimingDelayFactor>1.15</AimingDelayFactor>
+          <MeleeCooldownFactor>1.10</MeleeCooldownFactor>
+        </statFactors>
+      </li>
+
+      <li>
+        <label>Freeze</label>
+        <minSeverity>0.4</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.4</offset>
+          </li>
+        </capMods>
+        <statFactors>
+          <AimingDelayFactor>1.40</AimingDelayFactor>
+          <MeleeCooldownFactor>1.35</MeleeCooldownFactor>
+        </statFactors>
+      </li>
+
+      <li>
+        <label>Cryogenic Lockdown</label>
+        <minSeverity>0.8</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.6</offset>
+          </li>
+        </capMods>
+        <statFactors>
+          <AimingDelayFactor>1.80</AimingDelayFactor>
+          <MeleeCooldownFactor>1.70</MeleeCooldownFactor>
+        </statFactors>
+      </li>
+    </stages>
+
+    <defaultLabelColor>(0.45,0.75,1)</defaultLabelColor>
+  </HediffDef>
+
+  <EffecterDef>
+    <defName>BEWH_CryoEffecter</defName>
+    <maintainTicks>270</maintainTicks> <!-- to match the hediff duration -->
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
+        <fleckDef>WaterChurnNoise</fleckDef>
+        <burstCount>10~10</burstCount>
+        <spawnLocType>OnSource</spawnLocType>
+        <positionRadius>.75</positionRadius>
+        <positionOffset>(0, 0, 0)</positionOffset>
+        <scale>0.5~0.75</scale>
+        <angle>0~360</angle>
+        <fleckUsesAngleForVelocity>True</fleckUsesAngleForVelocity>
+        <absoluteAngle>true</absoluteAngle>
+        <rotationRate>30~30</rotationRate>
+        <rotation>0</rotation>
+        <speed>0</speed>
+      </li>
+    </children>
+  </EffecterDef>
+
+</Defs>

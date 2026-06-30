@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Base Ranged -->
+  <ThingDef ParentName="BaseHumanMakeableGun" Name="BEWH_VotannRangedBase" Abstract="true">
+    <techLevel>Spacer</techLevel>
+    <smeltable>false</smeltable>
+    <burnableByRecipe>true</burnableByRecipe>
+    <tradeability>None</tradeability>
+    <tradeTags Inherit="False" />
+    <thingSetMakerTags Inherit="False" />
+    <weaponTags Inherit="False">
+      <li>BEWH_VotannRanged</li>
+    </weaponTags>
+    <recipeMaker>
+      <recipeUsers Inherit="False">
+        <li>FabricationBench</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+    </recipeMaker>
+  </ThingDef>
+
+<!-- Tier 0 -->
+
+
+
+<!-- Tier 1 -->
+  <!-- Votann Bolter -->
+  <ThingDef ParentName="BEWH_VotannRangedBase">
+     <defName>BEWH_AutochPatternBolter</defName>
+        <label>Autoch Pattern Bolter</label>
+        <description>[Placeholder]\n\nAvalible Loadout:...</description>
+    <graphicData>
+    <texPath>Things/Weapons/BEWH_AutochPatternBolter</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+    <drawSize>1</drawSize>
+    </graphicData>
+    <soundInteract>Interact_ChargeRifle</soundInteract>
+    <statBases> <!-- set proper values -->
+      <WorkToMake>45000</WorkToMake>
+      <Mass>4.6</Mass>
+      <AccuracyTouch>0.6</AccuracyTouch>
+      <AccuracyShort>0.7</AccuracyShort>
+      <AccuracyMedium>0.6</AccuracyMedium>
+      <AccuracyLong>0.4</AccuracyLong>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+    </statBases>
+    <recipeMaker>
+      <skillRequirements>
+        <Crafting>11</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <costList>
+      <Steel>40</Steel>
+      <Plasteel>55</Plasteel>
+      <ComponentSpacer>3</ComponentSpacer>
+    </costList>
+    <verbs>
+      <li>
+        <verbClass>Core40k.Verb_ShootChangeableBullets</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>BEWH_BoltVotannBoltRegular</defaultProjectile>
+        <warmupTime>0.3</warmupTime>
+        <range>35.9</range>
+        <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <!-- <soundCast>BEWH_SFX_BolterShot</soundCast> --> <!-- add sfx -->
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>12</muzzleFlashScale>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="Core40k.CompProperties_AmmoChanger">
+        <compClass>Core40k.Comp_AmmoChanger</compClass>
+        <availableProjectiles>
+          <li>BEWH_BoltVotannBoltRegular</li>
+          <li>BEWH_BoltVotannBoltCryo</li>
+        </availableProjectiles>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="VEF.Things.ThingDefExtension">
+        <weaponCarryDrawOffsets>
+          <north>
+            <drawOffset>(0, 0, -0.2)</drawOffset>
+          </north>
+          <east>
+            <drawOffset>(-0.1, 0, -0.2)</drawOffset>
+          </east>
+          <south>
+            <angleOffset>-20</angleOffset>
+            <drawOffset>(0, 0, -0.2)</drawOffset>
+          </south>
+          <west>
+            <drawOffset>(0.1, 0, -0.2)</drawOffset>
+          </west>
+        </weaponCarryDrawOffsets>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+</Defs>

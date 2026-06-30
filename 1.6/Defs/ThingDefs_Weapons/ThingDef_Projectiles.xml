@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!-- Regular -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>BEWH_BoltVotannBoltRegular</defName>
+        <label>Iron Round</label>
+        <description>A standard-issue Votann bolter round. Externally similar to Imperial bolt shells, it incorporates a more efficient propulsion system that delivers higher terminal velocity and greater kinetic impact.</description>
+        <thingClass>Bullet</thingClass>
+        <uiIconPath>UI/AmmoSwitcher/BEWH_Bolt_Votann_IronRound</uiIconPath>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Big</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(0.8, 0.8)</drawSize>
+        </graphicData>
+        <projectile>
+            <damageDef>BEWH_Damage_IronRound</damageDef>
+            <damageAmountBase>25</damageAmountBase>
+            <armorPenetrationBase>0.68</armorPenetrationBase>
+            <soundExplode>GunShotA</soundExplode>
+            <screenShakeFactor>0.2</screenShakeFactor>
+            <speed>100</speed>
+        </projectile>
+        <modExtensions>
+            <li Class="Core40k.DefModExtension_AmmoChanger" />
+        </modExtensions>
+    </ThingDef>
+
+    <!-- Cryobolt -->
+    <ThingDef ParentName="BaseBullet">
+        <defName>BEWH_BoltVotannBoltCryo</defName>
+        <label>Cryo-Bolt</label>
+        <description>A specialized ammunition developed by Kin for close-tunnel engagements, where slowing an enemy's advance is a matter of life or death. Rather than relying on mass-recative detonation, this round deivers a hypercoolant payload on impact, disrupting the target's movement by freezing the organic tissue and seizing mechanical joints.</description>
+        <thingClass>Bullet</thingClass>
+        <uiIconPath>UI/AmmoSwitcher/BEWH_Bolt_Votann_Cryo</uiIconPath>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Big</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1, 1)</drawSize>
+        </graphicData>
+        <projectile>
+            <damageDef>BEWH_Damage_Cryo</damageDef>
+            <damageAmountBase>15</damageAmountBase>
+            <armorPenetrationBase>0.45</armorPenetrationBase>
+            <soundExplode>GunShotA</soundExplode>
+            <screenShakeFactor>0.2</screenShakeFactor>
+            <speed>90</speed>
+        </projectile>
+        <modExtensions>
+            <li Class="Core40k.DefModExtension_AmmoChanger">
+                <unlockedBy>BEWH_VotannTech_Tier_3</unlockedBy>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+</Defs>
